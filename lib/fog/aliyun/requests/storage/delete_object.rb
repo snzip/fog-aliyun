@@ -11,7 +11,7 @@ module Fog
           bucket = options[:bucket]
           bucket ||= @aliyun_oss_bucket
           location = get_bucket_location(bucket)
-          endpoint = 'http://' + location + '.aliyuncs.com'
+          endpoint = 'http://' + location + '.bcebos.com'
           resource = bucket + '/' + object
           request(
             expects: 204,
@@ -26,7 +26,7 @@ module Fog
         def abort_multipart_upload(bucket, object, endpoint, uploadid)
           if nil == endpoint
             location = get_bucket_location(bucket)
-            endpoint = 'http://' + location + '.aliyuncs.com'
+            endpoint = 'http://' + location + '.bcebos.com'
           end
           path = object + '?uploadId=' + uploadid
           resource = bucket + '/' + path

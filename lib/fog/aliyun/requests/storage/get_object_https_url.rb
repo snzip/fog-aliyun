@@ -23,11 +23,11 @@ module Fog
             expires_time = (Time.now.to_i + expires).to_s
             resource = bucket + '/' + object
             signature = sign('GET', expires_time, nil, resource)
-            url = 'https://' + bucket + '.' + location + '.aliyuncs.com/' + object +
-                  '?OSSAccessKeyId=' + @aliyun_accesskey_id + '&Expires=' + expires_time +
+            url = 'https://' + bucket + '.' + location + '.bcebos.com/' + object +
+                  '?AccessKeyId=' + @aliyun_accesskey_id + '&Expires=' + expires_time +
                   '&Signature=' + URI.encode(signature, '/[^!*\'()\;?:@#&%=+$,{}[]<>`" ')
           elsif 'public-read' == acl || 'public-read-write' == acl
-            url = 'https://' + bucket + '.' + location + '.aliyuncs.com/' + object
+            url = 'https://' + bucket + '.' + location + '.bcebos.com/' + object
           else
             url = 'acl is wrong with value:' + acl
           end

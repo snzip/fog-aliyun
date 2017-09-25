@@ -11,7 +11,7 @@ module Fog
           bucket = options[:bucket]
           bucket ||= @aliyun_oss_bucket
           location = get_bucket_location(bucket)
-          endpoint = 'http://' + location + '.aliyuncs.com'
+          endpoint = 'http://' + location + '.bcebos.com'
 
           path = name + '/'
           resource = bucket + '/' + name + '/'

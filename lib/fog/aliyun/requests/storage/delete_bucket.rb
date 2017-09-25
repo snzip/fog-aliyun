@@ -9,7 +9,7 @@ module Fog
         #
         def delete_bucket(bucket)
           location = get_bucket_location(bucket)
-          endpoint = 'http://' + location + '.aliyuncs.com'
+          endpoint = 'http://' + location + '.bcebos.com'
           resource = bucket + '/'
           request(
             expects: 204,

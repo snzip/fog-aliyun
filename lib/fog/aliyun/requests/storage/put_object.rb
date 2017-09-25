@@ -11,7 +11,7 @@ module Fog
           bucket = options[:bucket]
           bucket ||= @aliyun_oss_bucket
           location = get_bucket_location(bucket)
-          endpoint = 'http://' + location + '.aliyuncs.com'
+          endpoint = 'http://' + location + '.bcebos.com'
           return put_folder(bucket, object, endpoint) if nil == file
 
           # put multiparts if object's size is over 100m
@@ -37,7 +37,7 @@ module Fog
           bucket = options[:bucket]
           bucket ||= @aliyun_oss_bucket
           location = get_bucket_location(bucket)
-          endpoint = 'http://' + location + '.aliyuncs.com'
+          endpoint = 'http://' + location + '.bcebos.com'
 
           resource = bucket + '/' + object
           ret = request(
@@ -54,7 +54,7 @@ module Fog
         def put_folder(bucket, folder, endpoint)
           if nil == endpoint
             location = get_bucket_location(bucket)
-            endpoint = 'http://' + location + '.aliyuncs.com'
+            endpoint = 'http://' + location + '.bcebos.com'
           end
           path = folder + '/'
           resource = bucket + '/' + folder + '/'
@@ -70,7 +70,7 @@ module Fog
 
         def put_multipart_object(bucket, object, file)
           location = get_bucket_location(bucket)
-          endpoint = 'http://' + location + '.aliyuncs.com'
+          endpoint = 'http://' + location + '.bcebos.com'
 
           # find the right uploadid
           uploads = list_multipart_uploads(bucket, endpoint)
@@ -119,7 +119,7 @@ module Fog
         def initiate_multipart_upload(bucket, object, endpoint)
           if nil == endpoint
             location = get_bucket_location(bucket)
-            endpoint = 'http://' + location + '.aliyuncs.com'
+            endpoint = 'http://' + location + '.bcebos.com'
           end
           path = object + '?uploads'
           resource = bucket + '/' + path
@@ -137,7 +137,7 @@ module Fog
         def upload_part(bucket, object, endpoint, partNumber, uploadId, body)
           if nil == endpoint
             location = get_bucket_location(bucket)
-            endpoint = 'http://' + location + '.aliyuncs.com'
+            endpoint = 'http://' + location + '.bcebos.com'
           end
           path = object + '?partNumber=' + partNumber + '&uploadId=' + uploadId
           resource = bucket + '/' + path
@@ -155,7 +155,7 @@ module Fog
         def complete_multipart_upload(bucket, object, endpoint, uploadId)
           if nil == endpoint
             location = get_bucket_location(bucket)
-            endpoint = 'http://' + location + '.aliyuncs.com'
+            endpoint = 'http://' + location + '.bcebos.com'
           end
           parts = list_parts(bucket, object, endpoint, uploadId, options = {})
           request_part = []
